@@ -1,3 +1,5 @@
+
+
 ## 1  公众号准备
 
 首先申请一个公众号[申请公众号网页](https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN)
@@ -125,6 +127,48 @@ cd chzchat
     chmod 777 目录名
     ```
 
++ 使用phpstorm的sftp连接远程代码实现代码实时更新
+
+    首先打开phpstorm的无代码界面，选择关闭当前项目即可打开
+
+    ![1557816553872](readme.assets/1557816553872.png)
+
+    选择create new project from existing files
+
+    ![1557816421069](readme.assets/1557816421069.png)
+
+    选择第四个选项，点击下一步
+
+    ![1557816655688](readme.assets/1557816655688.png)
+
+    ![1557816708542](readme.assets/1557816708542.png)
+
+    这里如果没配置过远程主机的话选第一个
+
+    ![1557816754398](readme.assets/1557816754398.png)
+
+    接下来要配置远程主机，如果上一步选第二个就跳过这一步
+
+    ![1557816889384](readme.assets/1557816889384.png)
+
+    这里选择远程主机项目根目录，Ubuntu系统一般是/var/www/html![1557816936018](readme.assets/1557816936018.png)
+
+    ![1557816970961](readme.assets/1557816970961.png)
+
+    下载远程主机的文件到本地
+
+    ![1557816984376](readme.assets/1557816984376.png)
+
+    下载完成后勾选自动提交功能，这样本地代码就会实时更新到远程服务器了
+
+    ![1557817148217](readme.assets/1557817148217.png)
+
+    当然，你也可以手动提交
+
+    ![1557817188071](readme.assets/1557817188071.png)
+
+
+
 #### 2.2.3  配置开发环境
 
 + 配置apache2+php5+mysql
@@ -134,6 +178,9 @@ cd chzchat
     sudo apt-get install apache2
     sudo apt-get install php5
     sudo apt-get install mysql-server mysql-client
+    sudo apt-get install php5-mysql php5-mysqlnd
+    #php5-mysql用于开启mysqli扩展
+    #php5-mysqlnd用于开启mysqli-fetch-all函数
     ```
 
     测试apache2是否安装成功
@@ -168,6 +215,8 @@ cd chzchat
     ```
 
     ![1557637001250](readme.assets/1557637001250.png)
+
++ Navicat远程连接腾讯云MySQL数据库[解决方法](https://blog.csdn.net/weixin_41471128/article/details/83189083)
 
 + 其他环境配置请自行百度
 
