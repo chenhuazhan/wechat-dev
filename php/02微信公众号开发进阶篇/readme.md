@@ -1368,6 +1368,257 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### 5.4  微信抽奖
 
+需求说明：
+
+假如我们的公众号经营着一个商城，为了推广，发起了优惠券抽奖活动
+
+```
+1. 用户关注公众号后，公众号回复一条抽奖提示信息，提示信息包含抽奖页面链接
+2. 用户可以多次进入抽奖页面，每个用户只有3次抽奖机会
+3. 用户如果重新关注，抽奖次数不会改变，即每一个用户永远只有3次机会
+4. 抽奖页面类似老虎机，当三个数字相同时则中奖，3个数字只要有一个不一样都不算中奖，优惠券的面额和抽中的数字对应，例如抽到3个1则表示抽到1元优惠券，
+```
+
+
+
+新建抽奖记录数据表
+
+```sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for luckydraws
+-- ----------------------------
+DROP TABLE IF EXISTS `luckydraws`;
+CREATE TABLE `luckydraws`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `count` int(11) NOT NULL COMMENT '抽奖剩余次数',
+  `prizes` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '获得的奖品数字集合：num1,num2,num3',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抽奖记录' ROW_FORMAT = Compact;
+
+SET FOREIGN_KEY_CHECKS = 1;
+```
+
+改动代码：
+
+```php
+case 'subscribe':
+    $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->getAccessToken()."&openid=".$postObj->FromUserName."&lang=zh_CN";
+    $userInfo=$this->httpRequest($url);
+
+    // 查看用户是否在用户表中
+    $sql = "select id from users where openid = '$userInfo[openid]'";
+    //$this->replyText($sql);
+    $res = $this->sqlQuery($sql,true);
+    if(count($res)>0){
+        $status = 2;
+        $sql="update users set status = {$status} where openid='$userInfo[openid]'";
+    }else{
+        $sql="insert into luckydraws values(null,'$userInfo[openid]',3,'')";
+        $this->sqlExec($sql);
+        $status = 1;
+        $sql="insert into users values(null,'{$userInfo[openid]}','$userInfo[nickname]','$userInfo[sex]','$userInfo[country]','$userInfo[province]','$userInfo[city]','$userInfo[headimgurl]',$userInfo[subscribe_time],'$userInfo[subscribe_scene]',$status)";
+    }
+
+
+    $this->sqlExec($sql);
+    $welcome = "终于等到你\n我们的商城发起了一个优惠券抽奖活动，快来参与吧\n点击下面蓝色文字\n<a href='{$this->serverUrl}/app/luckdraw/?openid={$userInfo[openid]}'>进入抽奖页面</a>";
+    $this->replyText($welcome);
+    break;
+```
+
+其他代码参考app/luckdraw/*，微信入口程序完整代码见wx_sample
+
+
+
+## 6  memcache的使用
+
+> Memcached是一种基于内存的key-value存储，用来存储小块的任意数据（字符串、对象）。这些数据可以是数据库调用、API调用或者是页面渲染的结果。memcache可以用来缓存一些经常被使用的变量，如access_token
+
+### 6.1  安装Memcache 
+
+​	Memcache分为两部分,Memcache服务端和客户端。Memcache服务端是作为服务来运行的，所有数据缓存的建立，存储，删除实际上都是在这里完成的。客户端，在这里我们指的是PHP的可以调用的扩展。 
+
++ 安装Memcache服务端 
+
+    ```bash
+    sudo apt-get install memcached 
+    ```
+
+    安装完Memcache服务端以后，我们需要启动该服务： 
+
+    ```bash
+    memcached -d -m 128 -p 11111 -u root 
+    ```
+
+
+    这里需要说明一下memcached服务的启动参数： 
+
+    ```
+    -p 监听的端口 
+    -l 连接的IP地址, 默认是本机 
+    -d start 启动memcached服务 
+    -d restart 重起memcached服务 
+    -d stop|shutdown 关闭正在运行的memcached服务 
+    -d install 安装memcached服务 
+    -d uninstall 卸载memcached服务 
+    -u 以的身份运行 (仅在以root运行的时候有效) 
+    -m 最大内存使用，单位MB。默认64MB 
+    -M 内存耗尽时返回错误，而不是删除项 
+    -c 最大同时连接数，默认是1024 
+    -f 块大小增长因子，默认是1.25-n 最小分配空间，key+value+flags默认是48 
+    -h 显示帮助 
+    ```
+
+    
+
++ 安装Memcache客户端 
+
+    ```bash
+    sudo apt-get install php5-memcache 
+    ```
+
+    
+
+    安装完以后我们需要在php.ini里进行简单的配置,打开/etc/php5/apache2/php.ini文件在末尾添加如下内容： 
+
+    ```
+    [Memcache] 
+    
+    ; 一个高性能的分布式的内存对象缓存系统，通过在内存里维护一个统一的巨大的hash表， 
+    ; 它能够用来存储各种格式的数据，包括图像、视频、文件以及数据库检索的结果等。 
+    
+    ; 是否在遇到错误时透明地向其他服务器进行故障转移。 
+    memcache.allow_failover = On 
+    
+    ; 接受和发送数据时最多尝试多少个服务器，只在打开memcache.allow_failover时有效。memcache.max_failover_attempts = 20 
+    
+    ; 数据将按照此值设定的块大小进行转移。此值越小所需的额外网络传输越多。 
+    ; 如果发现无法解释的速度降低，可以尝试将此值增加到32768。 
+    memcache.chunk_size = 8192 
+    
+    ; 连接到memcached服务器时使用的默认TCP端口。 
+    memcache.default_port = 11111 
+    
+    ; 控制将key映射到server的策略。默认值”standard”表示使用先前版本的老hash策略。 
+    ; 设为”consistent”可以允许在连接池中添加/删除服务器时不必重新计算key与server之间的映射关系。 
+    ;memcache.hash_strategy = “standard”; 控制将key映射到server的散列函数。默认值”crc32″使用CRC32算法，而”fnv”则表示使用FNV-1a算法。 
+    ; FNV-1a比CRC32速度稍低，但是散列效果更好。 
+    ;memcache.hash_function = “crc32″ 
+    ```
+
+
+    保存php.ini,执行sudo /etc/init.d/apache2 restart重启Apache。 
+
++ 在PHP中使用Memcache 
+
+    ```php
+    <?php 
+    $mem = new Memcache; //创建Memcache对象
+    $mem->connect("127.0.0.1", 11111); //连接Memcache服务器
+    
+    $val = "这是一个Memcache的测试.";
+    $key = md5($val);
+    $mem->set($key,  $val,  0,  120); //增加插入一条缓存，缓存时间为120s
+    
+    if(($k = $mem->get($key))){ //判断是否获取到指定的key
+    echo 'from cache:'.$k;
+    } else {
+    echo 'normal'; //这里我们在实际使用中就需要替换成查询数据库并创建缓存.
+    }
+    ```
+
+    运行结果：
+
+    ![1557878629438](readme.assets/1557878629438.png)
+
+
+
+通过上面的步骤，我们就完成了Memcache的配置和基本使用… 
+
+### 6.2  php5-memcache扩展提供的方法 
+
+```
+Memcache::add — 添加一个值，如果已经存在，则返回false 
+Memcache::addServer — 添加一个可供使用的服务器地址 
+Memcache::close — 关闭一个Memcache对象 
+Memcache::connect — 创建一个Memcache对象 
+memcache_debug — 控制调试功能 
+Memcache::decrement — 对保存的某个key中的值进行减法操作 
+Memcache::delete — 删除一个key值 
+Memcache::flush — 清除所有缓存的数据 
+Memcache::get — 获取一个key值 
+Memcache::getExtendedStats — 获取进程池中所有进程的运行系统统计 
+Memcache::getServerStatus — 获取运行服务器的参数 
+Memcache::getStats — 返回服务器的一些运行统计信息 
+Memcache::getVersion — 返回运行的Memcache的版本信息 
+Memcache::increment — 对保存的某个key中的值进行加法操作 
+Memcache::pconnect — 创建一个Memcache的持久连接对象 
+Memcache::replace — R对一个已有的key进行覆写操作 
+Memcache::set — 添加一个值，如果已经存在，则覆写 
+Memcache::setCompressThreshold — 对大于某一大小的数据进行压缩 
+Memcache::setServerParams — 在运行时修改服务器的参数
+```
+
+### 6.3  在wx_sample.php里使用memcache
+
+在构造函数中初始化memcache
+
+```php
+//构造函数
+public function __construct($appid,$appsecret){
+    # code···
+    $this->mem = new Memcache; //创建Memcache对象
+    $this->mem->connect("127.0.0.1", 11111); //连接Memcache服务器
+}
+```
+
+新增两个方法
+
+```php
+private function setMemcache($key,$value,$time){
+    $this->mem->set($key,  $value,  0,  $time);
+}
+private function getMemcache($key){
+    return $this->mem->get($key); 
+}
+```
+
+在获取access_token时优先从memcache中获取，如果没有再从接口中获取，然后存进memcache中
+
+```php
+//获取公众号access_token
+private function getAccessToken()
+{
+    $access_token = $this->getMemcache('access_token');
+    if(!$access_token){
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$this->appid}&secret={$this->appsecret}";
+        $request = $this->httpRequest($url);
+        var_dump($request);
+        $access_token = $request['access_token'];
+        $this->setMemcache('access_token',$access_token,7000);
+    }
+    return $access_token;
+}
+```
+
+完整代码见wx_sample12.php
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
