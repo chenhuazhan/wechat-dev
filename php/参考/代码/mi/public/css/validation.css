@@ -1,0 +1,16 @@
+input.error { border: 1px solid red; }
+label.error {
+	background-image: url('../images/i.png');
+	background-repeat: no-repeat;
+	background-position: -61px -1px;
+  	font-weight: bold;
+  	padding-left:20px;
+  	color: #AF0000;
+}
+label.checked {
+  	color: #71b83d;
+	padding-left: 26px;
+	background-image: url('../images/i.png');
+	background-repeat: no-repeat;
+	background-position: -61px -51px;
+}

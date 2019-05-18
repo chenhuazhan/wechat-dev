@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <script src="./asset/jquery/jquery.min.js"></script>
+</head>
+<body>
+    <button onclick="createMenu()">创建菜单</button>
+    <button onclick="selectMenu()">查询菜单</button>
+    <button onclick="delMenu()">删除菜单</button>
+    <div id="res"></div>
+    <script>
+        function createMenu() {
+            $.get('../index.php',{
+                menu: "create"
+            },function(data){
+                $("#res").html(data);
+            });
+        }
+        function selectMenu() {
+            $.get('../index.php',{
+                menu: "select"
+            },function(data){
+                $("#res").html(data);
+            });
+        }
+        function delMenu() {
+            $.get('../index.php',{
+                menu: "del"
+            },function(data){
+                $("#res").html(data);
+            });
+        }
+    </script>
+</body>
+</html>

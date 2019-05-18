@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<style>
+		.content{
+			height:600px;
+		}
+	</style>
+	<div data-role="page" id="one">
+		<div data-role="header">
+			<h2>折叠效果</h2>
+		</div>
+		<div data-role="content" class="content">
+			<ul data-role="listview">
+			 	<li data-role="list-divider">欧洲</li>
+			  	<li><a href="#">法国</a></li>
+			  	<li><a href="#">德国</a></li>
+			</ul>
+
+
+			<h2>我的通讯录</h2>
+			  <ul data-role="listview" data-autodividers="true" data-inset="true" data-filter="true" data-filter-placeholder="搜索姓名 ...">
+			    <li><a href="#">Adele</a></li>
+			    <li><a href="#">Agnes</a></li>
+			    <li><a href="#">Albert</a></li>
+			    <li><a href="#">Billy</a></li>
+			    <li><a href="#">Bob</a></li>
+			    <li><a href="#">Calvin</a></li>
+			    <li><a href="#">Cameron</a></li>
+			    <li><a href="#">Chloe</a></li>
+			    <li><a href="#">Christina</a></li>
+			    <li><a href="#">Diana</a></li>
+			    <li><a href="#">Gabriel</a></li>
+			    <li><a href="#">Glen</a></li>
+			    <li><a href="#">Ralph</a></li>
+			    <li><a href="#">Valarie</a></li>
+			  </ul>
+			  <p>搜索框中的文本是 "搜索姓名 ..."。</p>
+
+		</div>
+		<div data-role="footer" data-position="fixed" data-fullscreen="true">
+			<div data-role="navbar">
+			      <ul>
+			        <li><a href="#" data-icon="plus">更多</a></li>
+			        <li><a href="#" data-icon="minus">更少</a></li>
+			        <li><a href="#" data-icon="delete">删除</a></li>
+			        <li><a href="#" data-icon="check">喜爱</a></li>
+			        <li><a href="#" data-icon="info">信息</a></li>
+			      </ul>
+			    </div>
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>

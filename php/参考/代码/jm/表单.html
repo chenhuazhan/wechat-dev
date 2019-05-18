@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<style>
+		.content{
+			height:600px;
+		}
+	</style>
+	<div data-role="page" id="one">
+		<!-- <div data-role="header">
+			<h2>折叠效果</h2>
+		</div> -->
+		<div data-role="content" class="content">
+			<form action="">
+				<label for="name" class="ui-hidden-accessible">name</label>
+				<input type="text" name="name" id="name" placeholder="请输入用户名.....">
+
+				<div data-role="fieldcontain">
+				   <label for="fname">First name:</label>
+				   <input type="text" name="fname" id="fname">
+				   <label for="lname">Last name:</label>
+				   <input type="text" name="lname" id="lname">
+				 </div>
+				 <div data-role="fieldcontain">
+				     <label for="fullname">全名：</label>
+				     <input type="text" name="fullname" id="fullname">
+
+				     <label for="bday">生日：</label>
+				     <input type="date" name="bday" id="bday">
+
+				     <label for="email">电邮：</label>
+				     <input type="email" name="email" id="email" placeholder="您的邮件地址..">
+
+				     <label for="search">搜索</label>
+				     <input type="search" name="" id="">
+				   </div>
+				   <fieldset data-role="controlgroup">
+				       <legend>Choose your gender:</legend>
+				         <label for="male">Male</label>
+				         <input type="radio" name="gender" id="male" value="male">
+				         <label for="female">Female</label>
+				         <input type="radio" name="gender" id="female" value="female"> 
+				     </fieldset>
+				     <fieldset data-role="fieldcontain">
+				        <label for="day">选择日期</label>
+				        <select name="day" id="day">
+				          <option value="mon">星期一</option>
+				          <option value="tue">星期二</option>
+				          <option value="wed">星期三</option>
+				        </select>
+				      </fieldset>
+				      <select name="day" id="day">
+				         <optgroup label="Weekdays">
+				          <option value="mon">Monday</option>
+				          <option value="tue">Tuesday</option>
+				          <option value="wed">Wednesday</option>
+				         </optgroup>
+				         <optgroup label="Weekends">
+				          <option value="sat">Saturday</option>
+				          <option value="sun">Sunday</option>
+				         </optgroup>
+				      </select>
+				      <div data-role="fieldcontain">
+				        <label for="points">Points:</label>
+				        <input type="range" name="points" data-hightlight="true" id="points" value="10" min="5" max="20">
+				      </div>
+				      <div data-role="fieldcontain">
+				          <label for="switch">Toggle Switch:</label>
+				          <select name="switch" id="switch" data-role="slider">
+				            <option value="on">On</option>
+				            <option value="off" selected>Off</option>
+				          </select>
+				        </div>
+			</form>
+
+		</div>
+		<div data-role="footer" data-position="fixed" data-fullscreen="true">
+			<div data-role="navbar">
+			      <ul>
+			        <li><a href="#" data-icon="plus">更多</a></li>
+			        <li><a href="#" data-icon="minus">更少</a></li>
+			        <li><a href="#" data-icon="delete">删除</a></li>
+			        <li><a href="#" data-icon="check">喜爱</a></li>
+			        <li><a href="#" data-icon="info">信息</a></li>
+			      </ul>
+			    </div>
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>

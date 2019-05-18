@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="jquery.mobile.icons-1.4.5.min.css">
+
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+
+	<style>
+		.ui-grid-a{
+			border:1px solid #f00;
+		}
+		.a{
+			border: 1px solid #0ff; 
+		}
+	</style>
+</head>
+<body>
+	<div data-role="page" id="one">
+		<div data-role="header">
+				<h1>我的首页</h1>
+		</div>
+		<div data-role="content">
+			<h1>无序列表</h1>
+			<ul data-role="listview">
+				<li>dasas01</li>
+				<li>dasas02</li>
+				<li>dasas03</li>
+			</ul>
+			<h1>圆角无序列表</h1>
+			<ul data-role="listview" data-inset="true">
+				<li>dasas01</li>
+				<li>dasas02</li>
+				<li>dasas03</li>
+			</ul>
+
+			<h1>有序</h1>
+
+			<ol data-role="listview">
+				<li>dasas01</li>
+				<li>dasas02</li>
+				<li>dasas03</li>
+			</ol>
+
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="搜索姓名">
+				<li data-role="list-divider">欧洲</li>
+				<li><a href="">qwqwq <span class="ui-li-count">3</span></a></li>
+				<li><a href="">wqwq <span class="ui-li-count">3</span></a></li>
+				<li><a href="">wqwq <span class="ui-li-count">3</span></a></li>
+				<li><a href="">wqwq <span class="ui-li-count">3</span></a></li>
+			</ul>
+
+			<ul data-role="listview">
+			  <li><a href="#">Inbox<span class="ui-li-count">335</span></a></li>
+			  <li><a href="#">Sent<span class="ui-li-count">123</span></a></li>
+			  <li><a href="#">Trash<span class="ui-li-count">7</span></a></li>
+			</ul>
+		
+		
+
+
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" class="ui-btn-active" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

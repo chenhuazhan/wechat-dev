@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="jquery.mobile.icons-1.4.5.min.css">
+
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+
+	<script>
+		$(document).on("pageinit","#one1",function(){
+			$(document).on("scrollstart",function(){
+				// alert('11111111111111111111');
+				$("#one").css("color","red");
+			});
+			$(document).on("scrollstop",function(){
+				// alert('11111111111111111111');
+				$("#two").css("color","blue");
+
+
+			});
+
+		})
+	</script>
+</head>
+<body>
+	<div data-role="page" id="one1">
+		<div data-role="header">
+				<h1>我的首页</h1>
+				<input type="search" name="" id="">	
+		</div>
+		<div data-rol="content">
+			<h1 id="one">01</h1>
+			<h1 id="two">02</h1>
+			<h1>03</h1>
+			<h1>04</h1>
+			<h1>05</h1>
+			<h1>06</h1>
+			<h1>07</h1>
+			<h1>08</h1>
+			<h1>09</h1>
+			<h1>10</h1>
+			<h1>11</h1>
+			<h1>12</h1>
+			<h1>13</h1>
+			<h1>14</h1>
+			<h1>15</h1>
+			<h1>16</h1>
+			<h1>17</h1>
+			<h1>18</h1>
+			<h1>19</h1>
+			<h1>20</h1>
+
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" class="ui-btn-active" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

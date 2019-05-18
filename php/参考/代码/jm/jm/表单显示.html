@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="jquery.mobile.icons-1.4.5.min.css">
+
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+
+	<style>
+		.ui-grid-a{
+			border:1px solid #f00;
+		}
+		.a{
+			border: 1px solid #0ff; 
+		}
+	</style>
+</head>
+<body>
+	<div data-role="page" id="one">
+		<div data-role="header">
+				<h1>我的首页</h1>
+				<input type="search" name="" id="">	
+		</div>
+		<div data-role="content">
+			<form action="index.php">
+
+				<div data-role="fieldcontain">
+				<label for="name">name</label>
+
+				<input type="text" name="" id="name" placeholder="请输入标签">
+				<label for="name">name</label>
+
+				<input type="email" name="" id="name">
+
+				<label for=""></label>
+				<textarea name="" id="" cols="30" rows="10"></textarea>
+
+				<input type="range" name="" id="" min="10" max="30">
+
+				<input type="search" name="" id="">
+				<fieldset data-role="controlgroup">
+				    <legend>Choose your gender:</legend>
+				      <label for="male">Male</label>
+				      <input type="radio" name="gender" id="male" value="male">
+				      <label for="female">Female</label>
+				      <input type="radio" name="gender" id="female" value="female"> 
+				  </fieldset>
+
+				  <fieldset data-role="controlgroup">
+				     <legend>Choose as many favorite colors as you'd like:</legend>
+				       <label for="red">Red</label>
+				       <input type="checkbox" name="favcolor" id="red" value="red">
+				       <label for="green">Green</label>
+				       <input type="checkbox" name="favcolor" id="green" value="green">
+				       <label for="blue">Blue</label>
+				       <input type="checkbox" name="favcolor" id="blue" value="blue"> 
+				   </fieldset>
+
+				   <fieldset data-role="fieldcontain">
+				       <label for="day">选择日期</label>
+				       <select name="day" id="day">
+				         <option value="mon">星期一</option>
+				         <option value="tue">星期二</option>
+				         <option value="wed">星期三</option>
+				       </select>
+				     </fieldset>
+				     <div data-role="fieldcontain">
+				        <label for="switch">Toggle Switch:</label>
+				        <select name="switch" id="switch" data-role="slider">
+				          <option value="on">On</option>
+				          <option value="off">Off</option>
+
+
+				        </select>
+				      </div>
+					
+				</div>
+			</form>
+		
+
+
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" class="ui-btn-active" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

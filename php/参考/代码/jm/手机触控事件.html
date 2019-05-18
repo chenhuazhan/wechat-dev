@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<style>
+		.content{
+			height:600px;
+		}
+		#two{
+			width:200px;
+			height:200px;
+			background-color: #f00;
+		}
+	</style>
+	<div data-role="page" id="one">
+		<!-- <div data-role="header">
+			<h2>折叠效果</h2>
+		</div> -->
+		<div data-role="content" class="content">
+			<div id="two">
+				
+			</div>
+
+		</div>
+		<div data-role="footer"  data-theme="b" data-position="fixed" data-fullscreen="true">
+			<div data-role="navbar">
+			      <ul>
+			        <li><a href="#" data-icon="plus">更多</a></li>
+			        <li><a href="#" data-icon="minus">更少</a></li>
+			        <li><a href="#" data-icon="delete">删除</a></li>
+			        <li><a href="#" data-icon="check">喜爱</a></li>
+			        <li><a href="#" data-icon="info">信息</a></li>
+			      </ul>
+			    </div>
+		</div>
+	</div>
+
+	
+	
+</body>
+<script>
+	// $(document).ready(function(){
+
+	   $(document).on("pageinit","#one",function(){
+	     // $("#two").on("click",function(){
+	     //   $(this).html('click事件');
+	     // });   
+	     $("#two").on("tap",function(){
+	       $(this).html('tap事件');
+	     });           
+	     $("#two").on("taphold",function(){
+	       $(this).html('长按事件');
+	     });         
+	     $("#two").on("swipe",function(){
+	       $(this).html("Swipe detected!");
+	     });             
+	   });
+
+	// });
+</script>
+</html>

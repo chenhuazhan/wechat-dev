@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<style>
+		.content{
+			height:600px;
+		}
+	</style>
+	<div data-role="page" id="one">
+		<div data-role="header">
+			<h2>折叠效果</h2>
+		</div>
+		<div data-role="content" class="content">
+<h2>包含缩略图和文本的列表：</h2>
+    <ul data-role="listview" data-inset="true">
+      <li>
+        <a href="#">
+        <img src="/i/chrome.png">
+        <h2>Google Chrome</h2>
+        <p>Google Chrome is a free, open-source web browser. Released in 2008.</p><span class="ui-li-count">335</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <img src="/i/firefox.png">
+        <h2>Mozilla Firefox</h2>
+        <p>Firefox is a web browser from Mozilla. Released in 2004.</p>
+        </a>
+      </li>
+    </ul>
+
+		</div>
+		<div data-role="footer" data-position="fixed" data-fullscreen="true">
+			<div data-role="navbar">
+			      <ul>
+			        <li><a href="#" data-icon="plus">更多</a></li>
+			        <li><a href="#" data-icon="minus">更少</a></li>
+			        <li><a href="#" data-icon="delete">删除</a></li>
+			        <li><a href="#" data-icon="check">喜爱</a></li>
+			        <li><a href="#" data-icon="info">信息</a></li>
+			      </ul>
+			    </div>
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>

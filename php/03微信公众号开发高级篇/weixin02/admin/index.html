@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <script src="./asset/jquery/jquery.min.js"></script>
+</head>
+<body>
+    <button onclick="createMenu()">创建菜单</button>
+    <button onclick="selectMenu()">查询菜单</button>
+    <button onclick="delMenu()">删除菜单</button><br>
+    <input type="text" id="text">
+    <button onclick="sendText()">群发文本消息</button>
+    <!--<input type="text" id="image_media_id">-->
+    <!--<button onclick="sendImage()">群发图片消息</button>-->
+    <div id="res"></div>
+    <script>
+        function createMenu() {
+            $.get('../index.php',{
+                menu: 'create'
+            },function(data){
+                $('#res').html(data);
+            });
+        }
+        function selectMenu() {
+            $.get('../index.php',{
+                menu: 'select'
+            },function(data){
+                $('#res').html(data);
+            });
+        }
+        function delMenu() {
+            $.get('../index.php',{
+                menu: 'del'
+            },function(data){
+                $('#res').html(data);
+            });
+        }
+        function sendText() {
+            var text = document.getElementById('text').value;
+            if(text == ''){
+                alert('请输入要发送的文本消息');
+                return;
+            }
+            $.get('../index.php',{
+                send: 'text',
+                text: text
+            },function(data){
+                $('#res').html(data);
+            });
+        }
+        function sendImage() {
+            var media_id = document.getElementById('image_media_id').value;
+            if(media_id == ''){
+                alert('请输入要发送的图片media_id');
+                return;
+            }
+            $.get('../index.php',{
+                send: 'image',
+                media_id: media_id
+            },function(data){
+                $('#res').html(data);
+            });
+        }
+    </script>
+</body>
+</html>

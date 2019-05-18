@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="jquery.mobile.icons-1.4.5.min.css">
+
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+
+	<script>
+		$(document).on("pageinit","#one",function(){
+			$("#tap").on("tap",function(){
+				$(this).css('color','red');
+			});
+			$("#taphold").on("taphold",function(){
+				$("p").show();
+			});
+
+			$("#swipe").on("swipe",function(){
+				$(this).html("滑动");
+			});
+
+			$("#swipe").on("swipe",function(){
+				$(this).html("滑动");
+			});
+			$("#swipeleft").on("swipeleft",function(){
+				$(this).html("先走滑动");
+			});
+
+			$("#swiperight").on("swiperight",function(){
+				$(this).html("向右滑动");
+			});
+
+		})
+	</script>
+	<style>
+		.div{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #f00;
+		}
+	</style>
+</head>
+<body>
+	<div data-role="page" id="one">
+		<div data-role="header">
+				<h1>我的首页</h1>
+				<input type="search" name="" id="">	
+		</div>
+		<div data-rol="content">
+			<h1 id="tap">点击事件</h1>
+			<h1 id="taphold"> 长按事件</h1>
+			<p style="display:none">1111111111</p>
+
+			<div id="swipe" class="div"></div>
+			<div id="swipeleft" class="div"></div>
+			<div id="swiperight" class="div"></div>
+
+			<h1>01</h1>
+			<h1>02</h1>
+			<h1>03</h1>
+			<h1>04</h1>
+			<h1>05</h1>
+			<h1>06</h1>
+			<h1>07</h1>
+			<h1>08</h1>
+			<h1>09</h1>
+			<h1>10</h1>
+
+		
+
+
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" class="ui-btn-active" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+					<li><a href="" data-icon="home">1212312</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0 auto;
+			padding: 0px;
+		}
+		body{
+			background: url('bg.jpg');
+		}
+		h2{
+			text-align: center;
+			color: #fff;
+			line-height: 100px;
+		}
+		.main{
+			width:600px;
+			height:530px;
+			margin-top: 10px;
+			border: 5px solid #00f;
+			border-radius: 5px;
+		}
+		ul li{
+			list-style: none;
+		}
+		ul li .main_li{
+			height:100px;
+			background-color: #aaf;
+			border-radius: 10px;
+			margin:5px;
+		}
+		.left{
+			width:20%;
+			float:left;
+		}
+		.right{
+			width:80%;
+			float:left;
+		}
+	</style>
+	<script src="jquery.js"></script>
+</head>
+<body>
+	<h2>微信上墙系统</h2>
+	<div class="main">
+		<ul id="ul">
+		</ul>
+	</div>
+</body>
+<script>
+    function getMsgList(){
+        $.get('./ajax.php',{},function(data){
+            $("#ul").html(data);
+        });
+    }
+    getMsgList();
+	setInterval(function(){
+        getMsgList();
+	},3000);
+</script>
+</html>
